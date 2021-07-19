@@ -7,8 +7,8 @@ import './App.css';
 
 function App() {
   const [time, setTime] = useState();
-  const [noTime, setNoTime] = useState(false);
-  const [direction, setDirection] = useState(false);
+  const [noRealTime, setNoRealTime] = useState(false);
+  const [directionTime, setDirectionTime] = useState(false);
   function handleTime(time) {
     setTime(time);
   }
@@ -16,16 +16,16 @@ function App() {
     setTime(time);
   }
   function handleChangeTime() {
-    setNoTime(true);
-    setDirection(!direction);
+    setNoRealTime(true);
+    setDirectionTime(!directionTime);
   }
   return (
     <div className="App">
       <header className="App-header">
         <h1>React Time</h1>
-        {noTime ? (<NoTime
+        {noRealTime ? (<NoTime
           onTime={handleNoTime}
-          direction={direction}
+          direction={directionTime}
           time={time}
         />) :
           (<Time onTime={handleTime} />)}
