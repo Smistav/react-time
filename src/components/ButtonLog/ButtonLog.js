@@ -3,7 +3,7 @@ function ButtonLog({ time }) {
     console.log(`${time.hours}:${time.minutes}:${time.seconds}`);
   }
   return (
-    <button onClick={handleClick}>Вывести в Log</button>
+    <button className="App-button" onClick={handleClick}>Вывести в Log</button>
   )
 }
 export default ButtonLog

@@ -3,7 +3,7 @@ function ButonChangeTime({ changeTime }) {
     changeTime();
   }
   return (
-    <button onClick={handleClick}>Изменить направление</button>
+    <button className="App-button" onClick={handleClick}>Изменить направление</button>
   )
 }
 export default ButonChangeTime
