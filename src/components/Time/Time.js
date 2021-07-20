@@ -7,7 +7,7 @@ function Time({ onTime, direction, noRealTime }) {
     const showTime = setInterval(() => getTime(), 1000);
     return () => { clearInterval(showTime); }
   });
-  function controlTime(id) {
+  function controlDirectionTime(id) {
     if (id === 0) {
       if (direction) { return -1 }
       if (!direction) { return 1 }
@@ -19,20 +19,22 @@ function Time({ onTime, direction, noRealTime }) {
     let directionHours = 0;
     const data = new Date();
     const seconds = data.getSeconds(noRealTime ? data.setSeconds(time.seconds + directionSecond) : '');
-    directionMinutes = controlTime(seconds);
-    const minutes = noRealTime ? time.minutes + directionMinutes : data.getMinutes();
-    directionHours = controlTime(minutes);
+    directionMinutes = controlDirectionTime(seconds);
+    const minutes = data.getMinutes(noRealTime ? data.setMinutes(time.minutes + directionMinutes) : '');
+    // const minutes = noRealTime ? time.minutes + directionMinutes : data.getMinutes();
+    directionHours = controlDirectionTime(minutes);
+    const hours = data.getHours(noRealTime ? data.setHours(time.hours + directionHours) : '');
     const timeNow = {
       seconds: seconds,
       minutes: minutes,
-      hours: noRealTime ? time.hours + directionHours : data.getHours(),
+      hours: hours,
     };
     setTime(timeNow);
     onTime(timeNow);
   }
 
   return (
-    <p>{time.hours}:{time.minutes}:{time.seconds}</p>
+    <h2>{time.hours}:{time.minutes}:{time.seconds}</h2>
   )
 }
 export default Time
